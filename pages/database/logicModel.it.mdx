@@ -1,0 +1,62 @@
+# Modello Logico
+
+STUDENT (student_id PK, name, surname, email, password, other_details)\
+COURSE (course_id PK, title, description, responsible_teacher_id FK, start_date, end_date)\
+TEACHER (teacher_id PK, name, surname, email, specialization)\
+COURSE_MATERIAL (material_id PK, title, description, file_or_link, publication_date, course_id FK)\
+ENROLLMENT (enrollment_id PK, student_id FK, course_id FK, enrollment_date, status)\
+STUDENT_PERFORMANCE (performance_id PK, student_id FK, course_id FK, evaluation, completion_date)\
+
+<br />
+<br />
+<br />
+
+# Porzione del dizionario dati - Entità
+
+| Entità              |                    Descrizione                    |                                  Attributi                                  | Identificatori |
+| :------------------ | :-----------------------------------------------: | :-------------------------------------------------------------------------: | :------------: |
+| STUDENT             |       Contiene informazioni sugli studenti        |          student_id, name, surname, email, password, other_details          | Codice Fiscale |
+| COURSE              |          Rappresenta i corsi disponibili          | course_id, title, description, responsible_teacher_id, start_date, end_date |   course_id    |
+| TEACHER             |         Contiene informazioni sui docenti         |              teacher_id, name, surname, email, specialization               |   teacher_id   |
+| COURSE_MATERIAL     |    Rappresenta i materiali didattici associati    | material_id, title, description, file_or_link, publication_date, course_id  |  material_id   |
+| ENROLLMENT          | Collega gli studenti ai corsi a cui sono iscritti |        enrollment_id, student_id, course_id, enrollment_date, status        | enrollment_id  |
+| STUDENT_PERFORMANCE |     Rappresenta le prestazioni degli studenti     |     performance_id, student_id, course_id, evaluation, completion_date      | performance_id |
+
+<br />
+<br />
+<br />
+
+# Porzione del dizionario dati - Relazioni
+
+| Relazione       |          Entità Partecipanti           |                        Descrizione                        |          Attributi          |
+| :-------------- | :------------------------------------: | :-------------------------------------------------------: | :-------------------------: |
+| IS_ENROLLED_IN  |     STUDENT(1,1), ENROLLMENT(0,N)      |   Collegamento tra studenti e corsi a cui sono iscritti   |                             |
+| HAS_ENROLLED    |      COURSE(1,1), ENROLLMENT(0,N)      |      Associazione tra corsi e gli studenti iscritti       |   enrollment_date, status   |
+| TEACHES         |       TEACHER(1,1), COURSE(0,N)        |      Associazione tra docenti e corsi che insegnano       |                             |
+| INCLUDES        |   COURSE(1,1), COURSE_MATERIAL(0,N)    | Associazione tra corsi e materiali didattici disponibili  |                             |
+| HAS_PERFORMANCE | STUDENT(1,1), STUDENT_PERFORMANCE(1,N) | Associazione tra studenti e le loro prestazioni nei corsi | evaluation, completion_date |
+
+**IS_ENROLLED_IN**:
+
+- **Entità Partecipanti**: STUDENT, ENROLLMENT
+- **Descrizione**: Questa relazione rappresenta il legame tra gli studenti e i corsi ai quali sono iscritti. Ogni studente può essere iscritto a più corsi, quindi è una relazione 1-N (uno-a-molti).
+
+**HAS_ENROLLED**:
+
+- **Entità Partecipanti**: COURSE, ENROLLMENT
+- **Descrizione**: Indica quali studenti sono iscritti a un determinato corso. Un corso può avere molti studenti iscritti, ma uno studente è iscritto a un solo corso alla volta. Pertanto, è una relazione N-1 (molti-a-uno) dal corso agli studenti.
+
+**TEACHES**:
+
+- **Entità Partecipanti**: TEACHER, COURSE
+- **Descrizione**: Questa relazione collega i docenti ai corsi che insegnano. Un docente può insegnare più corsi, ma un corso è insegnato da un solo docente. Quindi, è una relazione N-1 (molti-a-uno) dal docente ai corsi.
+
+**INCLUDES**:
+
+- **Entità Partecipanti**: COURSE, COURSE_MATERIAL
+- **Descrizione**: Indica quali materiali didattici sono inclusi in un determinato corso. Un corso può includere molti materiali didattici, ma un materiale didattico può essere incluso in un solo corso. Quindi, è una relazione N-1 (molti-a-uno) dal corso ai materiali didattici.
+
+**HAS_PERFORMANCE**:
+
+- **Entità Partecipanti**: STUDENT, STUDENT_PERFORMANCE
+- **Descrizione**: Questa relazione associa gli studenti alle loro prestazioni nei corsi. Ogni studente può avere molte prestazioni in diversi corsi, mentre ogni prestazione è associata a un solo studente. Quindi, è una relazione 1-N (uno-a-molti) dagli studenti alle loro prestazioni.

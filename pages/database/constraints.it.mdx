@@ -1,0 +1,23 @@
+# Vincoli d'integrità
+
+Vincoli non esprimibili dallo schema E/R:
+
+- **Vincolo sull'attributo "valutazione" in Student Performance**:
+  Assicurare che il valore dell'attributo "valutazione" sia compreso tra 0 e 30, in linea con la scala di valutazione prevista per i corsi.
+
+- **Vincolo sulla data di iscrizione in Enrollment**:
+  Impedire che la data di iscrizione sia successiva alla data di fine del corso o precedente alla data di inizio del corso.
+
+- **Vincolo sull'email degli studenti in Student**:
+  Garantire che l'indirizzo email degli studenti sia unico all'interno del sistema, evitando duplicati.
+
+- **Vincolo sull'email dei docenti in Teacher**:
+  Analogamente agli studenti, assicurare l'unicità degli indirizzi email dei docenti.
+
+- **Vincolo sull'unicità del titolo dei corsi**:
+  Evitare la presenza di corsi con lo stesso titolo per prevenire ambiguità e facilitare la ricerca.
+
+- **Vincolo sull'attributo "stato" in Enrollment**:
+  Assicurare che lo stato dell'iscrizione sia uno dei valori consentiti, come "attivo", "completato", "in corso", ecc.
+
+L'applicazione di questi specifici vincoli di integrità del database contribuirà a garantire l'integrità e la coerenza dei dati, supportando il corretto funzionamento del sistema di gestione dei corsi online.

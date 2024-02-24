@@ -1,0 +1,136 @@
+# E/R Model
+
+Let's consider a skeleton schema to start with:
+
+```mermaid
+erDiagram
+    STUDENT ||--|| STUDENT_PERFORMANCE : "has performance"
+    STUDENT ||--|| ENROLLMENT : "is enrolled in"
+    COURSE ||--|| ENROLLMENT : "has enrolled"
+    TEACHER ||--|| COURSE : teaches
+    COURSE ||--|| COURSE_MATERIAL : includes
+```
+
+Once we have established the basic entities, let's add the attributes:
+
+```mermaid
+erDiagram
+    STUDENT ||--|| STUDENT_PERFORMANCE : "has performance"
+    STUDENT ||--|| ENROLLMENT : "is enrolled in"
+    COURSE ||--|| ENROLLMENT : "has enrolled"
+    TEACHER ||--|| COURSE : teaches
+    COURSE ||--|| COURSE_MATERIAL : includes
+
+    STUDENT {
+        student_id INT
+        name VARCHAR
+        surname VARCHAR
+        email VARCHAR
+        password VARCHAR
+        other_details TEXT
+    }
+
+    COURSE {
+        course_id INT
+        title VARCHAR
+        description TEXT
+        responsible_teacher_id INT
+        start_date DATE
+        end_date DATE
+    }
+
+    TEACHER {
+        teacher_id INT
+        name VARCHAR
+        surname VARCHAR
+        email VARCHAR
+        specialization VARCHAR
+    }
+
+    COURSE_MATERIAL {
+        material_id INT
+        title VARCHAR
+        description TEXT
+        file_or_link VARCHAR
+        publication_date DATE
+        course_id INT
+    }
+
+    ENROLLMENT {
+        enrollment_id INT
+        student_id INT
+        course_id INT
+        enrollment_date DATE
+        status VARCHAR
+    }
+
+    STUDENT_PERFORMANCE {
+        performance_id INT
+        student_id INT
+        course_id INT
+        evaluation DECIMAL
+        completion_date DATE
+    }
+```
+
+Now, we can establish the keys and then the relationships:
+
+```mermaid
+erDiagram
+    STUDENT ||--|{ STUDENT_PERFORMANCE : "has performance"
+    STUDENT ||--o{ ENROLLMENT : "is enrolled in"
+    COURSE ||--o{ ENROLLMENT : "has enrolled"
+    TEACHER ||--o{ COURSE : teaches
+    COURSE ||--o{ COURSE_MATERIAL : includes
+
+    STUDENT {
+        student_id INT PK
+        name VARCHAR
+        surname VARCHAR
+        email VARCHAR
+        password VARCHAR
+        other_details TEXT
+    }
+
+    COURSE {
+        course_id INT PK
+        title VARCHAR
+        description TEXT
+        responsible_teacher_id INT FK
+        start_date DATE
+        end_date DATE
+    }
+
+    TEACHER {
+        teacher_id INT PK
+        name VARCHAR
+        surname VARCHAR
+        email VARCHAR
+        specialization VARCHAR
+    }
+
+    COURSE_MATERIAL {
+        material_id INT PK
+        title VARCHAR
+        description TEXT
+        file_or_link VARCHAR
+        publication_date DATE
+        course_id INT FK
+    }
+
+    ENROLLMENT {
+        enrollment_id INT PK
+        student_id INT FK
+        course_id INT FK
+        enrollment_date DATE
+        status VARCHAR
+    }
+
+    STUDENT_PERFORMANCE {
+        performance_id INT PK
+        student_id INT FK
+        course_id INT FK
+        evaluation DECIMAL
+        completion_date DATE
+    }
+```

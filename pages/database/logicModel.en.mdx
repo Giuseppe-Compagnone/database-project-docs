@@ -1,0 +1,62 @@
+# Logical Model
+
+STUDENT (student_id PK, name, surname, email, password, other_details)\
+COURSE (course_id PK, title, description, responsible_teacher_id FK, start_date, end_date)\
+TEACHER (teacher_id PK, name, surname, email, specialization)\
+COURSE_MATERIAL (material_id PK, title, description, file_or_link, publication_date, course_id FK)\
+ENROLLMENT (enrollment_id PK, student_id FK, course_id FK, enrollment_date, status)\
+STUDENT_PERFORMANCE (performance_id PK, student_id FK, course_id FK, evaluation, completion_date)
+
+<br />
+<br />
+<br />
+
+# Data Dictionary Portion - Entities
+
+| Entity              |                      Description                      |                                 Attributes                                  |  Identifiers   |
+| :------------------ | :---------------------------------------------------: | :-------------------------------------------------------------------------: | :------------: |
+| STUDENT             |          Contains information about students          |          student_id, name, surname, email, password, other_details          |   Student ID   |
+| COURSE              |             Represents available courses              | course_id, title, description, responsible_teacher_id, start_date, end_date |   course_id    |
+| TEACHER             |          Contains information about teachers          |              teacher_id, name, surname, email, specialization               |   teacher_id   |
+| COURSE_MATERIAL     |      Represents associated educational materials      | material_id, title, description, file_or_link, publication_date, course_id  |  material_id   |
+| ENROLLMENT          | Connects students to the courses they are enrolled in |        enrollment_id, student_id, course_id, enrollment_date, status        | enrollment_id  |
+| STUDENT_PERFORMANCE |            Represents student performance             |     performance_id, student_id, course_id, evaluation, completion_date      | performance_id |
+
+<br />
+<br />
+<br />
+
+# Data Dictionary Portion - Relationships
+
+| Relationship    |         Participating Entities         |                       Description                       |         Attributes          |
+| :-------------- | :------------------------------------: | :-----------------------------------------------------: | :-------------------------: |
+| IS_ENROLLED_IN  |     STUDENT(1,1), ENROLLMENT(0,N)      |  Connects students to the courses they are enrolled in  |                             |
+| HAS_ENROLLED    |      COURSE(1,1), ENROLLMENT(0,N)      |        Associates courses with enrolled students        |   enrollment_date, status   |
+| TEACHES         |       TEACHER(1,1), COURSE(0,N)        |     Associates teachers with the courses they teach     |                             |
+| INCLUDES        |   COURSE(1,1), COURSE_MATERIAL(0,N)    | Associates courses with available educational materials |                             |
+| HAS_PERFORMANCE | STUDENT(1,1), STUDENT_PERFORMANCE(1,N) |  Associates students with their performance in courses  | evaluation, completion_date |
+
+**IS_ENROLLED_IN**:
+
+- **Participating Entities**: STUDENT, ENROLLMENT
+- **Description**: This relationship represents the link between students and the courses they are enrolled in. Each student can be enrolled in multiple courses, hence it's a 1-N (one-to-many) relationship.
+
+**HAS_ENROLLED**:
+
+- **Participating Entities**: COURSE, ENROLLMENT
+- **Description**: Indicates which students are enrolled in a particular course. A course can have many enrolled students, but a student is enrolled in only one course at a time. Hence, it's a N-1 (many-to-one) relationship from course to students.
+
+**TEACHES**:
+
+- **Participating Entities**: TEACHER, COURSE
+- **Description**: This relationship links teachers to the courses they teach. A teacher can teach multiple courses, but a course is taught by only one teacher. So, it's a N-1 (many-to-one) relationship from teacher to courses.
+
+**INCLUDES**:
+
+- **Participating Entities**: COURSE, COURSE_MATERIAL
+- **Description**: Indicates which educational materials are included in a particular course. A course can include many educational materials, but an educational material can be included in only one course. So, it's a N-1 (many-to-one) relationship from course to educational materials.
+
+**HAS_PERFORMANCE**:
+
+- **Participating Entities**: STUDENT, STUDENT_PERFORMANCE
+- **Description**: This relationship associates students with their performance in courses. Each student can have many performances across different courses, while each performance is associated with only one student. So, it's a 1-N (one-to-many) relationship from students to their performances.

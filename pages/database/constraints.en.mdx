@@ -1,0 +1,23 @@
+# Integrity Constraints
+
+Constraints not expressible by the E/R schema:
+
+- **Constraint on the "evaluation" attribute in Student Performance**:
+  Ensure that the value of the "evaluation" attribute falls between 0 and 30, in line with the grading scale expected for courses.
+
+- **Constraint on the enrollment date in Enrollment**:
+  Prevent the enrollment date from being after the course end date or before the course start date.
+
+- **Constraint on student emails in Student**:
+  Ensure that students' email addresses are unique within the system, avoiding duplicates.
+
+- **Constraint on teacher emails in Teacher**:
+  Similarly to students, ensure the uniqueness of teachers' email addresses.
+
+- **Constraint on the uniqueness of course titles**:
+  Avoid having courses with the same title to prevent ambiguity and facilitate search.
+
+- **Constraint on the "status" attribute in Enrollment**:
+  Ensure that the enrollment status is one of the allowed values, such as "active," "completed," "in progress," etc.
+
+Applying these specific database integrity constraints will help ensure data integrity and consistency, supporting the proper functioning of the online course management system.
