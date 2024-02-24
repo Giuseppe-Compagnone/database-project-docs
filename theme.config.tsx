@@ -5,7 +5,10 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const config: DocsThemeConfig = {
   logo: <span>Database Project Docs</span>,
-
+  i18n: [
+    { locale: "en", text: "English" },
+    { locale: "it", text: "Italiano" },
+  ],
   footer: {
     text: (
       <div className="footer">
