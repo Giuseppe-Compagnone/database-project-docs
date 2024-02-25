@@ -9,19 +9,33 @@ const Logo = () => {
   const [flag, setFlag] = useState<ChildNode | null>(null);
 
   useEffect(() => {
-    const item = document.getElementById("headlessui-listbox-button-:R2fjcm:");
-    setFlag(item.firstChild);
+    const timer = setInterval(() => {
+      console.log("TIMER");
+      if (!flag) {
+        const item = document.getElementById(
+          "headlessui-listbox-button-:R2fjcm:"
+        );
+        if (item) setFlag(item.firstChild);
+        clearInterval(timer);
+      }
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   useEffect(() => {
-    setFlag((old) => {
-      // @ts-ignore
-      old.firstChild.outerHTML = `<img class="flag" src="https://flagsapi.com/${
-        router.locale === "it" ? "IT" : ""
-      }${router.locale === "en" ? "GB" : ""}/flat/64.png" />`;
+    if (flag) {
+      setFlag((old) => {
+        // @ts-ignore
+        old.firstChild.outerHTML = `<img class="flag" src="https://flagsapi.com/${
+          router.locale === "it" ? "IT" : ""
+        }${router.locale === "en" ? "GB" : ""}/flat/64.png" />`;
 
-      return old;
-    });
+        return old;
+      });
+    }
   }, [router.locale, flag]);
 
   return (
