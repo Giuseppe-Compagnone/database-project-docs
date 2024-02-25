@@ -12,11 +12,10 @@ const Logo = () => {
     const timer = setInterval(() => {
       console.log("TIMER");
       if (!flag) {
-        const item = document.getElementById(
-          "headlessui-listbox-button-:R2fjcm:"
-        );
+        const item =
+          document.getElementById("headlessui-listbox-button-:R2fjcm:") ||
+          document.getElementById("headlessui-listbox-button-:Rjsr6:");
         if (item) {
-          console.log("ITEM", item.firstChild);
           setFlag(item.firstChild);
           clearInterval(timer);
         }
@@ -31,7 +30,6 @@ const Logo = () => {
   useEffect(() => {
     if (flag) {
       setFlag((old) => {
-        console.log("SET FLAG", router.locale);
         // @ts-ignore
         old.firstChild.outerHTML = `<img class="flag" src="https://flagsapi.com/${
           router.locale === "it" ? "IT" : ""
