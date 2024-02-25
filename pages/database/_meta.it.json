@@ -1,5 +1,7 @@
 {
   "erModel": "Modello E/R",
   "logicModel": "Modello Logico",
-  "constraints": "Vincoli d'integrità"
+  "constraints": "Vincoli d'integrità",
+  "operations": "Operazioni",
+  "redundancies": "Ridondanze"
 }

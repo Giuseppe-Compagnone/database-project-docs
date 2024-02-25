@@ -1,0 +1,20 @@
+# Ridondanze
+
+Consideriamo ora se sia opportuno aggiungere attributi ridondanti al fine di semplificare alcune operazioni di lettura, adotteremo i volumi specificati nella pagina precedente:
+
+Una informazione utile è il numero di studenti iscritti a un corso. Pertanto, valutiamo l'opportunità di inserire un campo "num_enrollments" nella tabella "COURSE", per semplicità consideriamo che ogni corso abbia lo stesso numero di studenti e che il calcolo avvenga una volta al giorno.
+
+## Lettura senza l'attributo ridondante
+
+Calcoli delle Letture Necessarie per Ottenere il Numero di Iscritti ad un corso:
+
+- Numero di Studenti per Corso: 1000 / 50 = **20**
+- Numero di letture a "ENROLLMENT": **1**
+- Numero di letture a "COURSE": **1**
+- Totale: 20\*(1+1)\*1 = **40L**
+
+Quindi, per ottenere il numero di iscritti ad ogni corso, sarebbe necessario effettuare **40** letture per ciascun corso.
+
+##
+
+Calcolo delle scritture e delle letture per l'iscrizione di uno studente a un corso, si intende che lo studente è già registrato per cui non va fatta l'operazione di scrittura in studente:

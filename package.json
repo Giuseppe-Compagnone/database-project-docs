@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export"
+    "export": "next build && next start"
   },
   "author": {
     "name": "Giuseppe Compagnone",
@@ -19,7 +19,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "next": "^13.0.6",
+    "next": "^14.1.0",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",

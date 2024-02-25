@@ -1,5 +1,7 @@
 {
   "erModel": "E/R Model",
   "logicModel": "Logical Model",
-  "constraints": "Integrity constraints"
+  "constraints": "Integrity constraints",
+  "operations": "Operations",
+  "redundancies": "Redundancies"
 }

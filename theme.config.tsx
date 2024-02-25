@@ -4,6 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const config: DocsThemeConfig = {
+  useNextSeoProps() {
+    return {
+      titleTemplate: "%s – Docs",
+    };
+  },
   logo: <span>Database Project Docs</span>,
   i18n: [
     { locale: "en", text: "English" },

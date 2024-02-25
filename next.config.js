@@ -3,13 +3,16 @@ const withNextra = require("nextra")({
   themeConfig: "./theme.config.tsx",
 });
 
-module.exports = withNextra({
-  images: {
-    unoptimized: true,
-  },
-  i18n: {
-    locales: ["en", "it"],
-    defaultLocale: "en",
-    localeDetection: false,
-  },
-});
+module.exports = {
+  // output: "export",
+  ...withNextra({
+    images: {
+      unoptimized: true,
+    },
+    i18n: {
+      locales: ["en", "it"],
+      defaultLocale: "en",
+      localeDetection: false,
+    },
+  }),
+};
