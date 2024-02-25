@@ -15,8 +15,8 @@ const Logo = () => {
         const item = document.getElementById(
           "headlessui-listbox-button-:R2fjcm:"
         );
-        console.log("ITEM", item.firstChild);
         if (item) setFlag(item.firstChild);
+        console.log("ITEM", item.firstChild);
         clearInterval(timer);
       }
     }, 500);
