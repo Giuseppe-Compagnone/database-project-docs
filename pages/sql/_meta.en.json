@@ -1,5 +1,6 @@
 {
   "setup": "Setup",
   "tables": "Tables",
-  "constraints": "Constraints"
+  "constraints": "Constraints",
+  "trigger": "Trigger"
 }

@@ -1,5 +1,6 @@
 {
   "setup": "Setup",
   "tables": "Tabelle",
-  "constraints": "Vincoli"
+  "constraints": "Vincoli",
+  "trigger": "Trigger"
 }
