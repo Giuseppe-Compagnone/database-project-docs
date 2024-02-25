@@ -1,0 +1,35 @@
+# Eventi
+
+Per semplificare ulteriormente la gestione del database ci avveremo di alcuni eventi per la gestione automatica degli ENROLLMENT status
+
+## Avviare i corsi
+
+Il primo trigger controllerà quotidianamente se inizia un corso e si occuperà di cambiare lo status da "active" a "in progress".
+
+```sql
+CREATE EVENT update_enrollment_status
+ON SCHEDULE EVERY 1 DAY
+DO
+BEGIN
+    UPDATE ENROLLMENT e
+    INNER JOIN COURSE c ON e.course_id = c.course_id
+    SET e.status = 'in progress'
+    WHERE CURDATE() = c.start_date;
+END;
+```
+
+## Chiusura dei corsi
+
+Il secondo trigger, come il primo, verrà eseguito ogni giorno. In questo caso, se la data odierna corrisponde alla data di chiusura di un corso, cambierà lo stato da "in progress" a "completed".
+
+```sql
+CREATE EVENT close_enrollment
+ON SCHEDULE EVERY 1 DAY
+DO
+BEGIN
+    UPDATE ENROLLMENT e
+    INNER JOIN COURSE c ON e.course_id = c.course_id
+    SET e.status = 'completed'
+    WHERE CURDATE() = c.end_date;
+END;
+```

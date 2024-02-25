@@ -2,5 +2,6 @@
   "setup": "Setup",
   "tables": "Tabelle",
   "constraints": "Vincoli",
-  "trigger": "Trigger"
+  "trigger": "Trigger",
+  "event": "Eventi"
 }
