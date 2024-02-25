@@ -15,6 +15,7 @@ const Logo = () => {
         const item = document.getElementById(
           "headlessui-listbox-button-:R2fjcm:"
         );
+        console.log("ITEM", item.firstChild);
         if (item) setFlag(item.firstChild);
         clearInterval(timer);
       }
@@ -28,6 +29,7 @@ const Logo = () => {
   useEffect(() => {
     if (flag) {
       setFlag((old) => {
+        console.log("SET FLAG", router.locale);
         // @ts-ignore
         old.firstChild.outerHTML = `<img class="flag" src="https://flagsapi.com/${
           router.locale === "it" ? "IT" : ""

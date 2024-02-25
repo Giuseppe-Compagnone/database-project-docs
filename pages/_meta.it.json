@@ -1,4 +1,5 @@
 {
   "index": "Introduzione",
-  "database": "Struttura del Database"
+  "database": "Struttura del Database",
+  "sql": "Implementazione MySql"
 }
