@@ -1,0 +1,44 @@
+# Constraints
+
+We have previously defined some constraints, and now it's time to apply them. Most of them will be implemented as constraints:
+
+## Constraint on the "evaluation" attribute in Student Performance
+
+The evaluation must be between 18 and 30.
+
+```sql
+ALTER TABLE STUDENT_PERFORMANCE
+ADD CONSTRAINT evaluation_range_constraint CHECK (evaluation >= 18 AND evaluation <= 30);
+```
+
+## Constraint on user emails in Student and Teacher
+
+User emails must be unique within the database.
+
+```sql
+ALTER TABLE STUDENT
+ADD CONSTRAINT unique_student_email_constraint UNIQUE (email);
+```
+
+```sql
+ALTER TABLE TEACHER
+ADD CONSTRAINT unique_teacher_email_constraint UNIQUE (email);
+```
+
+## Constraint on the uniqueness of course titles
+
+There should not be multiple courses with the same title.
+
+```sql
+ALTER TABLE COURSE
+ADD CONSTRAINT unique_course_title_constraint UNIQUE (title);
+```
+
+## Constraint on the "status" attribute in Enrollment
+
+The status attribute can only have the following values: 'active', 'completed', 'in progress'.
+
+```sql
+ALTER TABLE ENROLLMENT
+ADD CONSTRAINT valid_enrollment_status_constraint CHECK (status IN ('active', 'completed', 'in progress'));
+```

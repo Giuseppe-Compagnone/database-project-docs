@@ -1,3 +1,5 @@
 {
-  "setup": "Setup"
+  "setup": "Setup",
+  "tables": "Tables",
+  "constraints": "Constraints"
 }

@@ -1,0 +1,44 @@
+# Vincoli
+
+Abbiamo precedentemente definito dei vincoli e ora è necessario applicarli. La maggior parte di essi saranno implementati come vincoli (constraints):
+
+## Vincolo sull'attributo "evaluation" in Student Performance
+
+La valutazione dovrà essere compresa tra 18 e 30.
+
+```sql
+ALTER TABLE STUDENT_PERFORMANCE
+ADD CONSTRAINT evaluation_range_constraint CHECK (evaluation >= 18 AND evaluation <= 30);
+```
+
+## Vincolo sull'email degli utenti in Student e Teacher
+
+La mail degli utenti dovranno essere univoci all'interno del database.
+
+```sql
+ALTER TABLE STUDENT
+ADD CONSTRAINT unique_student_email_constraint UNIQUE (email);
+```
+
+```sql
+ALTER TABLE TEACHER
+ADD CONSTRAINT unique_teacher_email_constraint UNIQUE (email);
+```
+
+## Vincolo sull'unicità del titolo dei corsi
+
+Non dovranno esistere più corsi con lo stesso nome.
+
+```sql
+ALTER TABLE COURSE
+ADD CONSTRAINT unique_course_title_constraint UNIQUE (title);
+```
+
+## Vincolo sull'attributo "stato" in Enrollment
+
+L'attributo stato potrà avere solo i seguenti valori:'active', 'completed', 'in progress'.
+
+```sql
+ALTER TABLE ENROLLMENT
+ADD CONSTRAINT valid_enrollment_status_constraint CHECK (status IN ('active', 'completed', 'in progress'));
+```
