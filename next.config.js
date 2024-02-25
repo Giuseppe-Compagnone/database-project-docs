@@ -4,7 +4,6 @@ const withNextra = require("nextra")({
 });
 
 module.exports = {
-  distDir: "out",
   ...withNextra({
     images: {
       unoptimized: true,

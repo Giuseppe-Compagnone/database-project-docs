@@ -15,11 +15,72 @@ Calcoli delle Letture Necessarie per Ottenere il Numero di Iscritti ad un corso:
 
 Quindi, per ottenere il numero di iscritti ad ogni corso, sarebbe necessario effettuare **40** letture per ciascun corso.
 
-##
+<hr />
 
 Calcolo delle scritture e delle letture per l'iscrizione di uno studente a un corso, si intende che lo studente è già registrato per cui non va fatta l'operazione di scrittura in studente:
 
 - Numero di scritture in "ENROLLMENT": **1**
 - Totale: **1S**
 
-Ricordando che **1S = 1L**
+Ricordando che **1S = 1L**,abbiamo un totale di **42L** senza ridondanza
+
+## Lettura con l'attributo ridondante
+
+Calcoli delle Letture Necessarie per Ottenere il Numero di Iscritti ad un corso:
+
+- Numero letture in "COURSE" = **1**
+- Totale: **1L**
+
+Quindi, per ottenere il numero di iscritti ad ogni corso, sarebbe necessario effettuare **1** lettura per ciascun corso.
+
+<hr />
+
+Calcolo delle scritture e delle letture per l'iscrizione di uno studente a un corso:
+
+- Numero scritture in "ENROLLMENT": **1**
+- Numero scritture in "COURSE": **1**
+- Totale: **2S**
+
+abbiamo un totale di **5L** con la ridondanza, quindi conviene decisamente aggiungere questo attributo ridondante.
+
+<hr />
+
+Analizziamo adesso l'attributo media in "STUDENT"
+
+## Lettura senza l'attributo ridondante
+
+Calcoli delle Letture Necessarie per Ottenere la media di uno studente, anche qui per semplicità consideriamo che ogni studente abbia lo stesso numero di performance registrate, e anche questo viene calcolato una volta al giorno:
+
+- Numero di performance per Studente: 10000 / 1000 = **10**
+- Numero di letture a "STUDENT": **1**
+- Totale: 10\*1\*1 = **10L**
+
+Quindi, la media di ogni studente, sarebbe necessario effettuare **10** letture per ciascuno studente.
+
+<hr />
+
+Calcolo delle scritture e delle letture per la registrazione di una performance di uno studente:
+
+- Numero di scritture in "STUDENT_PERFORMANCE": **1**
+- Totale: **1S**
+
+Abbiamo un totale di **12L** senza ridondanza
+
+## Lettura con l'attributo ridondante
+
+Calcoli delle Letture Necessarie per Ottenere la media di uno studente:
+
+- Numero letture in "COURSE" = **1**
+- Totale: **1L**
+
+Quindi, per ottenere il numero di iscritti ad ogni corso, sarebbe necessario effettuare **1** lettura per ciascun corso.
+
+<hr />
+
+Calcolo delle scritture e delle letture per l'iscrizione di uno studente a un corso:
+
+- Numero scritture in "ENROLLMENT": **1**
+- Numero scritture in "COURSE": **1**
+- Totale: **2S**
+
+abbiamo un totale di **5L** con la ridondanza, quindi conviene decisamente aggiungere questo attributo ridondante.

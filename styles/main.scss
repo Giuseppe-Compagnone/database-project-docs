@@ -26,3 +26,12 @@
     }
   }
 }
+
+hr {
+  margin-top: 2rem !important;
+  height: 1px !important;
+  border: none !important;
+  background: hsl(
+    var(--nextra-primary-hue) var(--nextra-primary-saturation) 94%/0.1
+  ) !important;
+}
