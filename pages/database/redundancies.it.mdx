@@ -70,17 +70,17 @@ Abbiamo un totale di **12L** senza ridondanza
 
 Calcoli delle Letture Necessarie per Ottenere la media di uno studente:
 
-- Numero letture in "COURSE" = **1**
+- Numero letture in "STUDENT" = **1**
 - Totale: **1L**
 
-Quindi, per ottenere il numero di iscritti ad ogni corso, sarebbe necessario effettuare **1** lettura per ciascun corso.
+Quindi, per ottenere la media di ogni studente, sarebbe necessario effettuare **1** lettura per studente.
 
 <hr />
 
 Calcolo delle scritture e delle letture per l'iscrizione di uno studente a un corso:
 
-- Numero scritture in "ENROLLMENT": **1**
-- Numero scritture in "COURSE": **1**
+- Numero scritture in "STUDENT_PERFORMANCE": **1**
+- Numero scritture in "STUDENT": **1**
 - Totale: **2S**
 
-abbiamo un totale di **5L** con la ridondanza, quindi conviene decisamente aggiungere questo attributo ridondante.
+abbiamo un totale di **5L** con la ridondanza, in questo caso la ridondanza è fa risparmiare poche letture, quindi spetta all'amministratore decidere se tenere o meno la ridondanza

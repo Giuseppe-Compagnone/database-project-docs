@@ -1,0 +1,86 @@
+# Redundancies
+
+Now let's consider whether it's appropriate to add redundant attributes in order to simplify some reading operations, adopting the volumes specified on the previous page:
+
+An useful information is the number of students enrolled in a course. Therefore, we evaluate the opportunity to add a "num_enrollments" field in the "COURSE" table. For simplicity, let's assume that each course has the same number of students and that the calculation occurs once a day.
+
+## Reading without the redundant attribute
+
+Calculations of Necessary Reads to Obtain the Number of Enrollments per Course:
+
+- Number of Students per Course: 1000 / 50 = **20**
+- Number of reads on "ENROLLMENT": **1**
+- Number of reads on "COURSE": **1**
+- Total: 20 _ (1+1) _ 1 = **40L**
+
+So, to obtain the number of enrollments for each course, it would be necessary to perform **40** reads for each course.
+
+<hr />
+
+Calculations of Writes and Reads for a Student Enrollment in a Course, assuming the student is already registered so the write operation on the student is not needed:
+
+- Number of writes on "ENROLLMENT": **1**
+- Total: **1S**
+
+Remembering that **1S = 1L**, we have a total of **42L** without redundancy.
+
+## Reading with the redundant attribute
+
+Calculations of Necessary Reads to Obtain the Number of Enrollments per Course:
+
+- Number of reads on "COURSE" = **1**
+- Total: **1L**
+
+So, to obtain the number of enrollments for each course, it would be necessary to perform **1** read for each course.
+
+<hr />
+
+Calculations of Writes and Reads for a Student Enrollment in a Course:
+
+- Number of writes on "ENROLLMENT": **1**
+- Number of writes on "COURSE": **1**
+- Total: **2S**
+
+we have a total of **5L** with redundancy, so it definitely makes sense to add this redundant attribute.
+
+<hr />
+
+Now let's analyze the "average" attribute in "STUDENT"
+
+## Reading without the redundant attribute
+
+Calculations of Necessary Reads to Obtain the Average of a Student, here too for simplicity, let's assume that each student has the same number of recorded performances, and this is calculated once a day:
+
+- Number of performances per Student: 10000 / 1000 = **10**
+- Number of reads on "STUDENT": **1**
+- Total: 10 _ 1 _ 1 = **10L**
+
+So, for each student's average, it would be necessary to perform **10** reads for each student.
+
+<hr />
+
+Calculations of Writes and Reads for recording a performance of a student:
+
+- Number of writes on "STUDENT_PERFORMANCE": **1**
+- Total: **1S**
+
+We have a total of **12L** without redundancy.
+
+## Reading with the redundant attribute
+
+Calculations of Necessary Reads to Obtain the Average of a Student:
+
+- Number of reads on "STUDENT" = **1**
+- Total: **1L**
+
+So, to obtain the average of each student, it would be necessary to perform **1** read for each student.
+
+<hr />
+
+Calculations of Writes and Reads for a Student Enrollment in a Course:
+
+- Number of writes on "STUDENT_PERFORMANCE": **1**
+- Number of writes on "STUDENT": **1**
+- Total: **2S**
+
+we have a total of **5L** with redundancy, in this case the redundancy saves few reads, so it's up to the administrator to decide whether to keep it or not.
