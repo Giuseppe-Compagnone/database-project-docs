@@ -31,7 +31,7 @@ const Logo = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       console.log("TIMER");
-      if (!flag) {
+      if (!input) {
         const item = document.querySelector(
           "input.nx-block.nx-w-full.nx-appearance-none.nx-rounded-lg.nx-px-3.nx-py-2.nx-transition-colors.nx-text-base.nx-leading-tight"
         );
@@ -40,7 +40,7 @@ const Logo = () => {
           clearInterval(timer);
         }
       }
-    }, 500);
+    }, 1000);
 
     return () => {
       clearInterval(timer);
@@ -61,7 +61,7 @@ const Logo = () => {
   }, [router.locale, flag]);
 
   useEffect(() => {
-    if (flag) {
+    if (input) {
       setInput((old) => {
         // @ts-ignore
         old.placeholder = `${
@@ -71,7 +71,7 @@ const Logo = () => {
         return old;
       });
     }
-  }, [router.locale, flag]);
+  }, [router.locale, input]);
 
   return (
     <span className="logo">

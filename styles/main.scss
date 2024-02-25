@@ -46,3 +46,15 @@ hr {
   max-height: 100%;
   object-fit: cover;
 }
+
+.cta {
+  color: hsl(
+    var(--nextra-primary-hue) var(--nextra-primary-saturation) 45% /
+      var(--tw-text-opacity)
+  ) !important;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    filter: brightness(1.5);
+  }
+}
