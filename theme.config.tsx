@@ -16,6 +16,7 @@ const config: DocsThemeConfig = {
     { locale: "en", text: "English" },
     { locale: "it", text: "Italiano" },
   ],
+
   head: (
     <>
       <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
