@@ -2,7 +2,7 @@
 
 STUDENT (student_id PK, name, surname, email, password, other_details)\
 COURSE (course_id PK, title, description, responsible_teacher_id FK, start_date, end_date)\
-TEACHER (teacher_id PK, name, surname, email, specialization)\
+TEACHER (teacher_id PK, name, surname, email, password, specialization)\
 COURSE_MATERIAL (material_id PK, title, description, file_or_link, publication_date, course_id FK)\
 ENROLLMENT (enrollment_id PK, student_id FK, course_id FK, enrollment_date, status)\
 STUDENT_PERFORMANCE (performance_id PK, student_id FK, course_id FK, evaluation, completion_date)\

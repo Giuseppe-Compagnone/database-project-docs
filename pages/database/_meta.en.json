@@ -3,5 +3,6 @@
   "logicModel": "Logical Model",
   "constraints": "Integrity constraints",
   "operations": "Operations",
-  "redundancies": "Redundancies"
+  "redundancies": "Redundancies",
+  "update": "Structure Update"
 }

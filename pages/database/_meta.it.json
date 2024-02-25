@@ -3,5 +3,6 @@
   "logicModel": "Modello Logico",
   "constraints": "Vincoli d'integrità",
   "operations": "Operazioni",
-  "redundancies": "Ridondanze"
+  "redundancies": "Ridondanze",
+  "update": "Aggiornamento della Struttura"
 }
