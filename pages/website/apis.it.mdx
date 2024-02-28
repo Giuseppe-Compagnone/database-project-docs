@@ -1,0 +1,172 @@
+    # Endpoint
+
+    Il sito avrà vari endpoint che restituiranno informazioni dal database.
+
+    La struttura base di un endpoint è la seguente:
+
+    ````js
+    export const registerTeacher = async (
+    name,
+    surname,
+    email,
+    password,
+    specialization
+    ) => {
+    const [rows] = await pool.query(
+        `
+        INSERT INTO TEACHER (name, surname, email, password, specialization)
+        VALUES (?, ?, ?, ?, ?)
+    `,
+        [name, surname, email, password, specialization]
+    );
+    return rows;
+    };
+
+    app.post("/signup/teacher", async (req, res) => {
+    try {
+        await registerTeacher(
+        req.body.name,
+        req.body.surname,
+        req.body.email,
+        req.body.password,
+        req.body.specialization
+        );
+        res.send("Registered successfully");
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Error on registration");
+    }
+    });
+
+    Quindi, come possiamo vedere, è implementata una protezione contro le SQL injection grazie ai placeholders (?) e una gestione degli errori per tutti gli endpoint. Detto ciò, vediamo i dettagli:
+
+    ## SignUp Teacher
+
+    Questo endpoint serve per registrare un professore.
+
+    ```sql
+        INSERT INTO TEACHER ( name, surname, email, password, specialization)
+        VALUES ( ?, ?, ?, ?, ?)
+    ````
+
+    ## SignUp student
+
+    Questo endpoint serve per registrare uno studente.
+
+    ```sql
+        INSERT INTO STUDENT ( name, surname, email, password, performance_avg, other_details)
+        VALUES (?, ?, ?, ?, 0, ?)
+
+    ```
+
+    ## Login
+
+    Questo endpoint serve per accedere al sito. Ci sono due endpoint separati per studenti e professori.
+
+    ```sql
+
+    SELECT * FROM STUDENT
+    WHERE email = ?
+    AND password = ?
+
+
+    SELECT * FROM TEACHER
+    WHERE email = ?
+    AND password = ?
+
+    ```
+
+    ## Get Courses For Students
+
+    Questo endpoint restituisce tutti i corsi a cui uno studente è iscritto.
+
+    ```sql
+        SELECT c.course_id,c.title,c.description,c.num_enrollments,c.start_date,c.end_date,CONCAT(t.name , ' ', t.surname)  as responsible_teacher_id
+        FROM TEACHER as t
+        INNER JOIN COURSE as c
+        ON t.teacher_id = c.responsible_teacher_id
+        INNER JOIN ENROLLMENT as e
+        ON c.course_id = e.course_id
+        WHERE e.student_id = ?
+    ```
+
+    ## Get Courses For Teachers
+
+    Questo endpoint restituisce tutti i corsi creati da un professore.
+
+    ```sql
+        SELECT c.course_id,c.title,c.description,c.num_enrollments,c.start_date,c.end_date,CONCAT(t.name , ' ', t.surname)  as responsible_teacher_id
+        FROM TEACHER as t
+        INNER JOIN COURSE as c
+        ON t.teacher_id = c.responsible_teacher_id
+        WHERE c.responsible_teacher_id = ?
+    ```
+
+    ## Create Course
+
+    Questo endpoint serve per creare un nuovo corso.
+
+    ```sql
+        INSERT INTO COURSE (title, description, responsible_teacher_id, num_enrollments, start_date, end_date)
+        VALUES ( ?, ? , ?, 0, ?, ?)
+    ```
+
+    ## Enroll
+
+    Questo endpoint serve per iscrivere uno studente a un corso.
+
+    ```sql
+        INSERT INTO ENROLLMENT ( student_id, course_id, enrollment_date, status)
+        VALUES ( ?, ?, ?, 'active')
+    ```
+
+    # Get Course
+
+    Questo endpoint restituisce i dettagli di un corso.
+
+    ```sql
+        SELECT c.course_id,c.title,c.description,c.num_enrollments,start_date,end_date,CONCAT(t.name," ",t.surname) as responsible_teacher_id
+        FROM COURSE as c
+        INNER JOIN TEACHER as t
+        ON t.teacher_id = c.responsible_teacher_id
+        WHERE title = ?
+    ```
+
+    ## Get Materials
+
+    Questo endpoint restituisce i materiali di un corso.
+
+    ```sql
+        SELECT * FROM COURSE_MATERIAL
+        WHERE material_id = ?
+    ```
+
+    ## Upload Material
+
+    Questo endpoint serve per caricare un nuovo materiale didattico per un corso.
+
+    ```sql
+        INSERT INTO COURSE_MATERIAL ( title, description, file_or_link, publication_date, course_id)
+        VALUES( ?, ?, ?, ?, ?)
+    ```
+
+    ## Get Performances
+
+    Questo endpoint restituisce le performance di uno studente.
+
+    ```sql
+        SELECT p.performance_id,p.student_id,p.evaluation,p.completion_date,c.title as course_id
+        FROM STUDENT_PERFORMANCE as p
+        INNER JOIN COURSE as c
+        ON c.course_id = p.course_id
+        WHERE student_id = ?
+    ```
+
+    ## Upload Performance
+
+    Questo endpoint serve per caricare una nuova performance di uno studente.
+
+    ```sql
+        INSERT INTO STUDENT_PERFORMANCE ( student_id, course_id, evaluation, completion_date)
+        VALUES ( ?, ?, ?, ?)
+    ```
