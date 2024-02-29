@@ -4,7 +4,7 @@
 
     La struttura base di un endpoint è la seguente:
 
-    ````js
+    ```js
     export const registerTeacher = async (
     name,
     surname,
@@ -37,6 +37,8 @@
         res.status(500).send("Error on registration");
     }
     });
+
+    ```
 
     Quindi, come possiamo vedere, è implementata una protezione contro le SQL injection grazie ai placeholders (?) e una gestione degli errori per tutti gli endpoint. Detto ciò, vediamo i dettagli:
 

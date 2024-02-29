@@ -4,7 +4,7 @@ The website will have various endpoints that will retrieve information from the 
 
 The basic structure of an endpoint is as follows:
 
-````js
+```js
 export const registerTeacher = async (
   name,
   surname,
@@ -37,6 +37,7 @@ app.post("/signup/teacher", async (req, res) => {
     res.status(500).send("Error on registration");
   }
 });
+```
 
 So, as we can see, protection against SQL injection is implemented using placeholders (?) and error handling is implemented for all endpoints. With that said, let's see the details:
 
@@ -47,7 +48,7 @@ This endpoint is used to register a teacher.
 ```sql
     INSERT INTO TEACHER ( name, surname, email, password, specialization)
     VALUES ( ?, ?, ?, ?, ?)
-````
+```
 
 ## SignUp student
 
